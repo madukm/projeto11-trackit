@@ -4,44 +4,45 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { LoginRequest } from "../requests";
+import { signUpRequest } from "../requests";
 
-export default function LoginPage( props ) {
+export default function SignUpPage( props ) {
     
-	const { setToken } = props
-
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [name, setName] = useState('');
+	const [image, setImage] = useState('');
 	const [loading, setLoading] = useState(false);
-
+	
 	const navigate = useNavigate();
 
-	function loginSuccess( {name, image, email, token}) {
+	function signUpSuccess() {
 		setLoading(false);
-		setToken(token);
-		navigate('/hoje');
+		alert('Usuário cadastrado com sucesso!');
+		navigate('/');
 	}
 
-	function loginError() {
+	function signUpError() {
 		setLoading(false);
-		alert('Email ou senha incorretos. Tente novamente!');
+		alert('Não foi possível cadastrar o usuário. Por favor, tente novamente.');
 	}
 
-	function login(e) {
+	function signUp(e) {
 
 		e.preventDefault();
 
-		const loginObj = {email, password};
+    const signUpObj = {email, name, image, password};
 
 		setLoading(true);
 
-    LoginRequest(loginObj, loginSuccess, loginError);
+		signUpRequest(signUpObj, signUpSuccess, signUpError);
+
 	}
 
 	return (
 		<Container>
 			<Logo />
-			<form onSubmit={login}>
+			<form onSubmit={signUp}>
 				<Input
           type='email'
           placeholder='email'
@@ -58,14 +59,30 @@ export default function LoginPage( props ) {
           onChange={ (e) => setPassword(e.target.value)}
 					required
 				/>
+				<Input
+          type='name'
+          placeholder='nome'
+          value={name}
+					disabled={loading}
+          onChange={ (e) => setName(e.target.value)}
+					required
+        />
+				<Input
+          type='url'
+          placeholder='foto'
+          value={image}
+					disabled={loading}
+          onChange={ (e) => setImage(e.target.value)}
+					required
+        />
 				<Button 
 					type="submit" 
-					text="Entrar"
+					text="Cadastrar"
 					loading={loading}
 					disabled={loading}
 					/>
 			</form>
-			<StyledLink to='/cadastro'>Não tem uma conta? Cadastre-se!</StyledLink>
+			<StyledLink to='/'>Já tem uma conta? Faça login!</StyledLink>
 		</Container>
 	)
 }
