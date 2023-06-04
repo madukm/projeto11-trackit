@@ -1,24 +1,30 @@
 import styled from "styled-components";
 import Logo from "../components/Logo";
 import Input from "../components/Input";
-import Button from "../components/Button";
-import { useState } from "react";
+import FormButton from "../components/FormButton";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginRequest } from "../requests";
+import UserContext from "../userContext";
 
-export default function LoginPage( props ) {
-    
-	const { setToken } = props
-
+export default function LoginPage() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
+	const {user, setUser} = useContext(UserContext);
 
 	const navigate = useNavigate();
 
-	function loginSuccess( {name, image, email, token}) {
+	function loginSuccess( {id, name, image, token}) {
+		setUser(() => ({
+			...user,
+			id,
+			name,
+			image,
+			token
+		}));
+		localStorage.setItem('user', JSON.stringify(user));
 		setLoading(false);
-		setToken(token);
 		navigate('/hoje');
 	}
 
@@ -58,7 +64,7 @@ export default function LoginPage( props ) {
           onChange={ (e) => setPassword(e.target.value)}
 					required
 				/>
-				<Button 
+				<FormButton 
 					type="submit" 
 					text="Entrar"
 					loading={loading}
@@ -77,7 +83,6 @@ const Container = styled.div`
 	align-items: center;
 	gap: 32px;
 	margin: 68px 36px;
-
 	form {
 		width: 100%;
 		display: flex;

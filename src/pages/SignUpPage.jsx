@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Logo from "../components/Logo";
 import Input from "../components/Input";
-import Button from "../components/Button";
+import FormButton from "../components/FormButton";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signUpRequest } from "../requests";
@@ -75,7 +75,7 @@ export default function SignUpPage( props ) {
           onChange={ (e) => setImage(e.target.value)}
 					required
         />
-				<Button 
+				<FormButton 
 					type="submit" 
 					text="Cadastrar"
 					loading={loading}

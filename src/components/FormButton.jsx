@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ThreeDots } from "react-loader-spinner";
 
-const Button = ({ text, loading = false, disabled }) => {
+const FormButton = ({ text, loading = false, disabled }) => {
     return (
       <ButtonStyle disabled={disabled}>
         {loading ? <ThreeDots color="#FFF" /> : text }
@@ -29,4 +29,4 @@ const ButtonStyle = styled.button`
     }
 `;
 
-export default Button;
+export default FormButton;
