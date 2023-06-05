@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { GetTodayHabits } from "../requests";
 import { isAuthenticated } from "../requests";
 import { getCompletedHabits } from "../requests";
+import TodayHabit from "../components/TodayHabit";
 
 export default function TodayPage() {
 	const [todayHabits, setTodayHabits] = useState([]);
@@ -31,7 +32,9 @@ export default function TodayPage() {
 				<h2 data-test="today-counter">
 					{completedHabits === 0 ? 'Nenhum hábito concluído ainda' : `${completedHabits}% dos hábitos concluídos`}
 				</h2>
-				{todayHabits.map( habit => <TodayHabit id={habit.id} name={habit.name} days={habit.days}/>)}
+				<Center>
+					{todayHabits.map( habit => <TodayHabit id={habit.id} name={habit.name} days={habit.days}/>)}
+				</Center>
 			</Container>
 			<Menu />
 		</>
@@ -59,3 +62,9 @@ const Container = styled.div`
 		font-size: 18px;
 	}
 `;
+
+const Center = styled.div`
+	display: flex;
+	width: 100%;
+	margin-top: 28px;
+`

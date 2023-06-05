@@ -79,7 +79,7 @@ export default function SignUpPage( props ) {
 					required
 					data-test="user-image-input"
         />
-				<FormButton 
+				<FormButtonDataTest
 					type="submit" 
 					text="Cadastrar"
 					loading={loading}
@@ -117,3 +117,4 @@ const StyledLink = styled(Link)`
   color: #52B6FF;
 	text-decoration: underline;
 `
+const FormButtonDataTest = styled(FormButton)``;

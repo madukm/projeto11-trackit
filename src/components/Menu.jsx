@@ -33,13 +33,6 @@ export default function Menu() {
 	);
 }
 
-const Button = styled.button`
-	background-color: white;
-	border: none;
-	font-size: 18px;
-	color: #52B6FF;
-`;
-
 const Container = styled.div`
 	width: 100%;
 	background: white;
@@ -49,7 +42,7 @@ const Container = styled.div`
 	padding: 0 36px;
 	position: fixed;
   	bottom: 0;
-	
+	z-index: 1;
 `;
 
 const ProgressBarStyle = styled(CircularProgressbar)`
@@ -58,4 +51,11 @@ const ProgressBarStyle = styled(CircularProgressbar)`
 	bottom: 10px;
 	left: 50%;
 	transform: translateX(-50%);
+`;
+
+const Button = styled.button`
+	background-color: white;
+	border: none;
+	font-size: 18px;
+	color: #52B6FF;
 `;

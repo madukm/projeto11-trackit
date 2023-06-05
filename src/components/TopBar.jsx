@@ -22,5 +22,6 @@ const Container = styled.div`
 	padding: 11px 18px;
 	position: fixed;
   	top: 0;
+	z-index: 1;
 `;
 

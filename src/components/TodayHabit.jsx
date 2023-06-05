@@ -23,20 +23,23 @@ export default function TodayHabit({ id, name, done, currentSequence, highestSeq
                 <p>Sequência atual: {currentSequence} dias</p>
                 <p>Seu recorde: {highestSequence} dias</p>
             </ColumnDisplay>
-            <IconColor src={checkIcon} onClick={handleClick} color={done ? '#8FC549' : '#E7E7E7'}/>
+            <IconColor 
+                onClick={handleClick} 
+                background={done ? '#8FC549' : '#E7E7E7'}>
+                <img src={checkIcon} />
+            </IconColor>
 		</Container>
 	);
 }
 
 const Container = styled.div`
     width: 100%;
-	margin: 0 17px;
 	padding: 18px;
 	border-radius: 5px;
 	background: white;
 	position: relative;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
 	h1 {
 		color: #666666;
 		font-size: 20px;
@@ -49,8 +52,17 @@ const ColumnDisplay = styled.div`
 	gap: 7px;
 `;
 
-const IconColor = styled.img`
+const IconColor = styled.div`
     width: 69px;
-    backgroundColor: ${props => props.color}
+    height: 69px;
+    border: 1px solid #E7E7E7;
+    border-radius: 5px;
+    background-color: ${props => props.background};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 35px;
+    }
 `
 
