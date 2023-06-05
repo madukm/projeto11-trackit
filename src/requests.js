@@ -19,7 +19,10 @@ export function LoginRequest(obj, callbackSuccess, callbackError) {
 			'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login',
 			obj
 		)
-		.then(({ data }) => callbackSuccess(data))
+		.then(({ data }) => {
+			console.log(data);
+			callbackSuccess(data);
+		})
 		.catch((error) => {
 			console.log(error);
 			callbackError(error);

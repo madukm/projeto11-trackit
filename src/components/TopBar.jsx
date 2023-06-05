@@ -3,6 +3,7 @@ import MiniLogo from "./MiniLogo";
 import ProfilePhoto from "./ProfilePhoto";
 
 export default function TopBar() {
+	
 	return (
 		<Container>
 			<MiniLogo />

@@ -2,18 +2,20 @@ import styled from "styled-components";
 import TopBar from "../components/TopBar";
 import Menu from "../components/Menu";
 import plus from '../assets/plus.svg';
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ListHabits } from "../requests";
-import UserContext from "../userContext";
+import AddHabit from "../components/AddHabit";
+import { isAuthenticated } from "../requests";
 import Habit from "../components/Habit";
 
 export default function HabitsPage() {
-    const {user} = useContext(UserContext);
-    const [habits, setHabits] = useState(undefined);
-    const [displayed, setDisplayed] = useState(true);
-
-    function callbackSuccess({ list }) {
+    const [habits, setHabits] = useState([]);
+    const [displayed, setDisplayed] = useState(false);
+    const user = isAuthenticated();
+    
+    function callbackSuccess( list ) {
         setHabits(list);
+        console.log(list);
     }
 
     useEffect(() => {
@@ -26,12 +28,13 @@ export default function HabitsPage() {
 			<Container>
                 <HorizontalDisplay>
                     <h1>Meus hábitos</h1>
-                    <PlusButton>
+                    <PlusButton onClick={() => setDisplayed(true)}>
                         <img src={plus} />
                     </PlusButton>
                 </HorizontalDisplay>
-                {habits !== undefined && <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}
-                {displayed && <Habit setDisplayed={setDisplayed}/>}
+                {displayed && <AddHabit setDisplayed={setDisplayed}/>}
+                {habits.length === 0 && <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}
+                {habits.map( habit => <Habit name={habit.name} days={habit.days}/>)}
 			</Container>
 			<Menu />
 		</>
@@ -41,7 +44,7 @@ export default function HabitsPage() {
 
 const Container = styled.div`
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	margin-top: 70px;
 	margin-bottom: 70px;
 	background: #F2F2F2;
@@ -49,7 +52,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     gap: 28px;
     p {
         color: #666666;

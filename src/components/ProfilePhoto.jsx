@@ -1,13 +1,19 @@
 import styled from 'styled-components';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import UserContext from '../userContext';
+import { isAuthenticated } from '../requests';
 
 export default function ProfilePhoto() {
-    const {user} = useContext(UserContext);
-    console.log(user);
+    const [image, setImage] = useState('');
+    
+    useEffect(() => {
+        const user = isAuthenticated();
+        setImage(user.image);
+    })
+
     return (
         <Container>
-            <img src={user.image} />
+            <img src={image} />
         </Container>
     )
 }

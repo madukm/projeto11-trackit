@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function Menu() {
 	const navigate = useNavigate();
@@ -7,7 +9,23 @@ export default function Menu() {
 	return (
 		<Container>
 			<Button onClick={() => navigate('/habitos')}>Hábitos</Button>
-			<Button>Histórico</Button>
+			<Button onClick={() => navigate('/hoje')}>
+				<ProgressBarStyle
+					value={20}
+					text='Hoje'
+					background
+					backgroundPadding={6}
+					styles={buildStyles({
+						textSize: "18px",
+						textColor: 'white',
+						pathColor: 'white',
+						trailColor: 'transparent',
+						backgroundColor: '#52B6FF',
+
+					})}
+				/>
+			</Button>
+			<Button onClick={() => navigate('/historico')}>Histórico</Button>
 		</Container>
 	);
 }
@@ -21,6 +39,7 @@ const Button = styled.button`
 
 const Container = styled.div`
 	width: 100%;
+	background: white;
 	height: 70px;
 	display: flex;
 	justify-content: space-between;
@@ -30,3 +49,10 @@ const Container = styled.div`
 	
 `;
 
+const ProgressBarStyle = styled(CircularProgressbar)`
+	width: 91px;
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+`;

@@ -11,19 +11,13 @@ export default function LoginPage() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
-	const {user, setUser} = useContext(UserContext);
+	// const {user, setUser} = useContext(UserContext);
 
 	const navigate = useNavigate();
 
 	function loginSuccess( {id, name, image, token}) {
-		setUser(() => ({
-			...user,
-			id,
-			name,
-			image,
-			token
-		}));
-		localStorage.setItem('user', JSON.stringify(user));
+		const data = {id, name, image, token};
+		localStorage.setItem('user', JSON.stringify(data));
 		setLoading(false);
 		navigate('/hoje');
 	}
@@ -49,18 +43,18 @@ export default function LoginPage() {
 			<Logo />
 			<form onSubmit={login}>
 				<Input
-          type='email'
-          placeholder='email'
-          value={email}
+					type='email'
+					placeholder='email'
+					value={email}
 					disabled={loading}
-          onChange={ (e) => setEmail(e.target.value)}
+					onChange={ (e) => setEmail(e.target.value)}
 					required
         />
         <Input
           type='password'
           placeholder='senha'
           value={password}
-					disabled={loading}
+		disabled={loading}
           onChange={ (e) => setPassword(e.target.value)}
 					required
 				/>
