@@ -57,7 +57,7 @@ export default function LoginPage() {
 					disabled={loading}
           onChange={ (e) => setPassword(e.target.value)}
 					required
-					data-test="email-input"
+					data-test="password-input"
 				/>
 				<FormButton 
 					type="submit" 
