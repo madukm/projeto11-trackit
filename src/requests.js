@@ -36,6 +36,12 @@ export const isAuthenticated = () => {
     return JSON.parse(user);
 }
 
+export const getCompletedHabits = () => {
+	const number = localStorage.getItem('habits');
+	if (number === null) return 0;
+	return number;
+}
+
 export function ListHabits(token, callbackSuccess) {
 	const config = {
 		headers: { Authorization: `Bearer ${token}` }
@@ -81,4 +87,38 @@ export function DeleteHabit(id, token, callbackSuccess) {
 		.catch((error) => {
 			console.log(error);
 		})
+}
+
+
+export function GetTodayHabits(token, callbackSuccess) {
+	const config = {
+		headers: { Authorization: `Bearer ${token}` }
+	};
+	
+	axios
+		.get(
+			'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today',
+			config
+		)
+		.then(({ data }) => callbackSuccess(data))
+		.catch((error) => {
+			console.log(error);
+		})
+}
+
+export function CheckHabit(token, id, callbackSuccess) {
+	const config = {
+		headers: { Authorization: `Bearer ${token}` }
+	};
+	axios
+		.post(
+			`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`,
+			{},
+			config
+		)
+		.then(({ data }) => callbackSuccess(data))
+		.catch((error) => {
+			console.log(error);
+		})
+	
 }

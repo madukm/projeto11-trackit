@@ -9,10 +9,11 @@ import HabitsPage from "./pages/HabitsPage";
 
 export default function App() {
   const [user, setUser] = useState('');
-  
+  const [completedHabits, setCompletedHabits] = useState(0);
+
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{user, setUser}}>
+      <UserContext.Provider value={{user, setUser, completedHabits, setCompletedHabits}}>
       <Routes>
         <Route path='/' element={<LoginPage />} />
         <Route path='/cadastro' element={<SignUpPage />} />

@@ -11,8 +11,7 @@ export default function LoginPage() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [loading, setLoading] = useState(false);
-	// const {user, setUser} = useContext(UserContext);
-
+	
 	const navigate = useNavigate();
 
 	function loginSuccess( {id, name, image, token}) {
@@ -49,23 +48,26 @@ export default function LoginPage() {
 					disabled={loading}
 					onChange={ (e) => setEmail(e.target.value)}
 					required
+					data-test="email-input"
         />
         <Input
           type='password'
           placeholder='senha'
           value={password}
-		disabled={loading}
+					disabled={loading}
           onChange={ (e) => setPassword(e.target.value)}
 					required
+					data-test="email-input"
 				/>
 				<FormButton 
 					type="submit" 
 					text="Entrar"
 					loading={loading}
 					disabled={loading}
+					data-test="login-btn"
 					/>
 			</form>
-			<StyledLink to='/cadastro'>Não tem uma conta? Cadastre-se!</StyledLink>
+			<StyledLink to='/cadastro' data-test="signup-link">Não tem uma conta? Cadastre-se!</StyledLink>
 		</Container>
 	)
 }

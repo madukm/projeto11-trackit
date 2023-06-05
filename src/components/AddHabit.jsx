@@ -47,7 +47,7 @@ export default function AddHabit({ setDisplayed }) {
 		
 	}
 	return (
-		<Container>
+		<Container data-test="habit-create-container">
 			<form onSubmit={addNewHabit}>
 				<Input
 					type='name'
@@ -56,6 +56,7 @@ export default function AddHabit({ setDisplayed }) {
 					onChange={ (e) => setName(e.target.value)}
 					required
 					disabled={loading}
+					data-test="habit-name-input"
 				/>
 				<Days>
 					{weekDays.map((day, index) => (
@@ -66,6 +67,7 @@ export default function AddHabit({ setDisplayed }) {
 							background={selectedDays.has(index) ? '#CFCFCF' : 'white'}
 							onClick={() => handleButtonClick(index)}
 							disabled={loading}
+							data-test="habit-day"
 						>
 							{day.charAt(0)}
 						</DayButton>
@@ -75,6 +77,7 @@ export default function AddHabit({ setDisplayed }) {
 						<button
 							className='back-btn'
 							onClick={() => setDisplayed(false)}
+							data-test="habit-create-cancel-btn"
 							>
 						Cancelar
 						</button>
@@ -83,6 +86,7 @@ export default function AddHabit({ setDisplayed }) {
 							text='Salvar'
 							loading={loading}
 							disabled={loading}
+							data-test="habit-create-save-btn"
 						/>
 				</ButtonsContainer>
 				

@@ -5,7 +5,7 @@ import ProfilePhoto from "./ProfilePhoto";
 export default function TopBar() {
 	
 	return (
-		<Container>
+		<Container data-test="header">
 			<MiniLogo />
 			<ProfilePhoto />
 		</Container>

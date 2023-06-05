@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { ListHabits } from "../requests";
 import AddHabit from "../components/AddHabit";
 import { isAuthenticated } from "../requests";
-import Habit from "../components/Habit";
+import MyHabit from "../components/MyHabit";
 
 export default function HabitsPage() {
     const [habits, setHabits] = useState([]);
@@ -28,13 +28,13 @@ export default function HabitsPage() {
 			<Container>
                 <HorizontalDisplay>
                     <h1>Meus hábitos</h1>
-                    <PlusButton onClick={() => setDisplayed(true)}>
+                    <PlusButton onClick={() => setDisplayed(true)} data-test="habit-create-btn">
                         <img src={plus} />
                     </PlusButton>
                 </HorizontalDisplay>
                 {displayed && <AddHabit setDisplayed={setDisplayed}/>}
                 {habits.length === 0 && <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}
-                {habits.map( habit => <Habit id={habit.id} name={habit.name} days={habit.days}/>)}
+                {habits.map( habit => <MyHabit id={habit.id} name={habit.name} days={habit.days}/>)}
 			</Container>
 			<Menu />
 		</>

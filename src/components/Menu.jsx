@@ -1,17 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { getCompletedHabits } from "../requests";
 import "react-circular-progressbar/dist/styles.css";
+
 
 export default function Menu() {
 	const navigate = useNavigate();
+	const completedHabits = getCompletedHabits();
 
 	return (
-		<Container>
-			<Button onClick={() => navigate('/habitos')}>Hábitos</Button>
-			<Button onClick={() => navigate('/hoje')}>
+		<Container data-test="menu">
+			<Button onClick={() => navigate('/habitos')} data-test="habit-link">Hábitos</Button>
+			<Button onClick={() => navigate('/hoje')} data-test="today-link">
 				<ProgressBarStyle
-					value={20}
+					value={completedHabits}
 					text='Hoje'
 					background
 					backgroundPadding={6}
@@ -25,7 +28,7 @@ export default function Menu() {
 					})}
 				/>
 			</Button>
-			<Button onClick={() => navigate('/historico')}>Histórico</Button>
+			<Button onClick={() => navigate('/historico')} data-test="history-link">Histórico</Button>
 		</Container>
 	);
 }

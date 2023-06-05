@@ -5,7 +5,7 @@ import { isAuthenticated } from '../requests';
 import trashIcon from '../assets/dump.svg';
 import { DeleteHabit } from '../requests';
 
-export default function Habit({ id, name, days }) {
+export default function MyHabit({ id, name, days }) {
 	const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 	
 	const user = isAuthenticated();
@@ -25,8 +25,8 @@ export default function Habit({ id, name, days }) {
 	}
 
 	return (
-		<Container>
-			<h1>{name}</h1>
+		<Container data-test="habit-container">
+			<h1 data-test="habit-name">{name}</h1>
 				<Days>
 					{weekDays.map((day, index) => (
 						<DayButton
@@ -34,12 +34,13 @@ export default function Habit({ id, name, days }) {
 							key={index}
 							color={selectedDays.has(index) ? 'white' : '#CFCFCF'}
 							background={selectedDays.has(index) ? '#CFCFCF' : 'white'}
+							data-test="habit-day"
 						>
 							{day.charAt(0)}
 						</DayButton>
 					))}
 				</Days>
-			<img src={trashIcon} onClick={handleClick}/>
+			<img src={trashIcon} onClick={handleClick} data-test="habit-delete-btn"/>
 		</Container>
 	);
 }

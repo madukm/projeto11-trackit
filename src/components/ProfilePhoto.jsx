@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { useContext, useEffect, useState } from 'react';
-import UserContext from '../userContext';
+import { useEffect, useState } from 'react';
 import { isAuthenticated } from '../requests';
 
 export default function ProfilePhoto() {
@@ -13,7 +12,7 @@ export default function ProfilePhoto() {
 
     return (
         <Container>
-            <img src={image} />
+            <img src={image} data-test="avatar"/>
         </Container>
     )
 }
