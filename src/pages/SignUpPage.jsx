@@ -50,6 +50,7 @@ export default function SignUpPage( props ) {
 					disabled={loading}
           onChange={ (e) => setEmail(e.target.value)}
 					required
+					data-test="email-input"
         />
         <Input
           type='password'
@@ -58,6 +59,7 @@ export default function SignUpPage( props ) {
 					disabled={loading}
           onChange={ (e) => setPassword(e.target.value)}
 					required
+					data-test="password-input"
 				/>
 				<Input
           type='name'
@@ -66,6 +68,7 @@ export default function SignUpPage( props ) {
 					disabled={loading}
           onChange={ (e) => setName(e.target.value)}
 					required
+					data-test="user-name-input"
         />
 				<Input
           type='url'
@@ -74,15 +77,17 @@ export default function SignUpPage( props ) {
 					disabled={loading}
           onChange={ (e) => setImage(e.target.value)}
 					required
+					data-test="user-image-input"
         />
 				<FormButton 
 					type="submit" 
 					text="Cadastrar"
 					loading={loading}
 					disabled={loading}
+					data-test="signup-btn"
 					/>
 			</form>
-			<StyledLink to='/'>Já tem uma conta? Faça login!</StyledLink>
+			<StyledLink to='/' data-test="login-link">Já tem uma conta? Faça login!</StyledLink>
 		</Container>
 	)
 }
