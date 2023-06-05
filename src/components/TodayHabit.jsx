@@ -7,13 +7,14 @@ import { CheckHabit } from '../requests';
 
 export default function TodayHabit({ id, name, done, currentSequence, highestSequence }) {
 	const user = isAuthenticated();
+    const [checked, setChecked] = useState(done);
     
     function callbackSuccess() {
-
+        setChecked(true);
     }
 
 	function handleClick() {
-		
+		CheckHabit(user.token, id, callbackSuccess);
 	}
 
 	return (
@@ -25,7 +26,7 @@ export default function TodayHabit({ id, name, done, currentSequence, highestSeq
             </ColumnDisplay>
             <IconColor 
                 onClick={handleClick} 
-                background={done ? '#8FC549' : '#E7E7E7'}>
+                background={checked ? '#8FC549' : '#E7E7E7'}>
                 <img src={checkIcon} />
             </IconColor>
 		</Container>

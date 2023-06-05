@@ -22,7 +22,7 @@ export default function TodayPage() {
 	useEffect(() => {
 		GetTodayHabits(user.token, callbackSuccess);
 		
-	})
+	}, [])
 
 	return (
 		<>

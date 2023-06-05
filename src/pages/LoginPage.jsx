@@ -64,7 +64,7 @@ export default function LoginPage() {
 					text="Entrar"
 					loading={loading}
 					disabled={loading}
-					data-test="login-btn"
+					dataTest="login-btn"
 					/>
 			</form>
 			<StyledLink to='/cadastro' data-test="signup-link">Não tem uma conta? Cadastre-se!</StyledLink>

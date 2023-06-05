@@ -79,12 +79,12 @@ export default function SignUpPage( props ) {
 					required
 					data-test="user-image-input"
         />
-				<FormButtonDataTest
+				<FormButton
 					type="submit" 
 					text="Cadastrar"
 					loading={loading}
 					disabled={loading}
-					data-test="signup-btn"
+					dataTest="signup-btn"
 					/>
 			</form>
 			<StyledLink to='/' data-test="login-link">Já tem uma conta? Faça login!</StyledLink>
@@ -117,4 +117,3 @@ const StyledLink = styled(Link)`
   color: #52B6FF;
 	text-decoration: underline;
 `
-const FormButtonDataTest = styled(FormButton)``;

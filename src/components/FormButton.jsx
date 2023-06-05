@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { ThreeDots } from "react-loader-spinner";
 
-const FormButton = ({ text, loading = false, disabled }) => {
+const FormButton = ({ text, loading = false, disabled, dataTest }) => {
     return (
-      <ButtonStyle disabled={disabled}>
+      <ButtonStyle disabled={disabled} data-test={dataTest}>
         {loading ? <ThreeDots color="#FFF" /> : text }
       </ButtonStyle>
     )
