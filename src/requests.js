@@ -67,3 +67,18 @@ export function CreateHabit(token, obj, callbackSuccess) {
 			console.log(error);
 		})
 }
+
+export function DeleteHabit(id, token, callbackSuccess) {
+	const config = {
+		headers: { Authorization: `Bearer ${token}` }
+	};
+	axios
+		.delete(
+			`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`,
+			config
+		)
+		.then(({ data }) => callbackSuccess(data))
+		.catch((error) => {
+			console.log(error);
+		})
+}

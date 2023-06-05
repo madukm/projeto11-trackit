@@ -28,6 +28,7 @@ export default function AddHabit({ setDisplayed }) {
 		setName('');
 		setSelectedDays(new Map());
 		setDisplayed(false);
+		window.parent.location.reload();
 	}
 	
 	function addHabitFail() {

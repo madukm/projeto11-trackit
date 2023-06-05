@@ -1,16 +1,28 @@
 import styled from 'styled-components';
 import Input from './Input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { isAuthenticated } from '../requests';
 import trashIcon from '../assets/dump.svg';
+import { DeleteHabit } from '../requests';
 
-export default function Habit({ name, days }) {
+export default function Habit({ id, name, days }) {
 	const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 	
+	const user = isAuthenticated();
+
 	const selectedDays = days.reduce((map, day) => {
 		map.set(day, true);
 		return map;
 	}, new Map());
+
+	function deleteSuccess() {
+		window.parent.location.reload();
+	}
+
+	function handleClick() {
+		if (window.confirm('Tem certeza que deseja deletar este hábito?'))
+			DeleteHabit(id, user.token, deleteSuccess);
+	}
 
 	return (
 		<Container>
@@ -27,7 +39,7 @@ export default function Habit({ name, days }) {
 						</DayButton>
 					))}
 				</Days>
-			<img src={trashIcon}/>
+			<img src={trashIcon} onClick={handleClick}/>
 		</Container>
 	);
 }

@@ -13,9 +13,9 @@ export default function HabitsPage() {
     const [displayed, setDisplayed] = useState(false);
     const user = isAuthenticated();
     
+    
     function callbackSuccess( list ) {
         setHabits(list);
-        console.log(list);
     }
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function HabitsPage() {
                 </HorizontalDisplay>
                 {displayed && <AddHabit setDisplayed={setDisplayed}/>}
                 {habits.length === 0 && <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}
-                {habits.map( habit => <Habit name={habit.name} days={habit.days}/>)}
+                {habits.map( habit => <Habit id={habit.id} name={habit.name} days={habit.days}/>)}
 			</Container>
 			<Menu />
 		</>
